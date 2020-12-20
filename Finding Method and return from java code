@@ -1,0 +1,48 @@
+#Python code to find methods with arguments and return type from a Java file
+#Author: Zareef Jafar
+
+"""
+1. Converts each line from of java code of input.txt file to list of character
+2. Finds the "(" character because method name ends with this
+3. Than prints after the first empty space before "(" character to last character of the line
+4. To find the return type of the method it finds the second space before "(" character and prints the string between second 
+and first space before "()" 
+"""
+
+import re  #python regular expression module 
+import fileinput   #file input module
+
+
+#regex to match java methods. Hopefully covers common method patterns 
+pattern= '(\\s*((public|private|protected|static|final|abstract|synchronized|volatile)\\s+)*[\\w<>\\[\\]\\.]+\\s+\\w+\\s*\\((\\s*[\\w<>\\[\\]\\.]*\\s+\\w+\\s*,?)*\\s*\\))'
+print("Methods:")
+for line in fileinput.input('input.txt'):                                        #reads each line from input.txt file
+    result = re.match(pattern, line)                                             #match the line with the regex
+    if result and line.find("public static void main( String args[] )") == -1:   #exclude java main method 
+        line=line.strip()                                                        #trim spaces from both sides
+        chl = list(line)                                                         #convert line to list of characters
+        flag = chl.index('(')                                                    #find the position of ( character in list to find the method names with arguments
+        
+        spo=1  #will become 0 if first space is found
+        mname=flag #detecting starting position of method name
+        while spo!=0:
+            mname=mname-1
+            if chl[mname]==" ": #if first space is found loop will end
+                spo=spo-1       #will become 0 if first space is found
+          
+        for ichar in range(mname+1,len(line)):   #printing from method name to end of the line
+            print(chl[ichar],end="")
+        
+        
+        
+        fin=True          #will become false if finds second space before method name in while loop
+        typen=mname-1     #flag for start position of method type
+        print(", return type: ",end="")
+        while fin==True:      #remains true untill second space is found
+            typen=typen-1     #index goes backwards to find the second space 
+            if chl[typen]==" ": #finds second space before method name, method type will be string after the second space
+                fin=False        #becomes false as soon as second space before method name is found
+        
+        for ichar in range(typen+1,mname):  #rang from type name to start of method name
+            print(chl[ichar],end="")        #print method type 
+        print()
