@@ -6,7 +6,7 @@
 2. Finds the "(" character because method name ends with this
 3. Than prints after the first empty space before "(" character to last character of the line
 4. To find the return type of the method it finds the second space before "(" character and prints the string between second 
-and first space before "()" 
+and first space before "(" 
 """
 
 import re  #python regular expression module 
