@@ -2,7 +2,7 @@
 #Author: Zareef Jafar
 
 """
-1. Converts each line from of java code of input.txt file to list of character
+1. Converts each line of java code from input.txt file to list of characters
 2. Finds the "(" character because method name ends with this
 3. Than prints after the first empty space before "(" character to last character of the line
 4. To find the return type of the method it finds the second space before "(" character and prints the string between second 
