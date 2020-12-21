@@ -43,6 +43,6 @@ for line in fileinput.input('input.txt'):                                       
             if chl[typen]==" ": #finds second space before method name, method type will be string after the second space
                 fin=False        #becomes false as soon as second space before method name is found
         
-        for ichar in range(typen+1,mname):  #rang from type name to start of method name
+        for ichar in range(typen+1,mname):  #range from type name to start of method name
             print(chl[ichar],end="")        #print method type 
         print()
